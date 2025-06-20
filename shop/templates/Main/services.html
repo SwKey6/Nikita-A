@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+{% block title %}Магазин{% endblock title %}
+
+{% block content %}
+    <div class="section">
+        <ul class="ul_contacts">
+            <li class="li_contants"><h1>☢️Цены на наши услуги: ☢️</h1></li>
+            <li class="li_contants"><h2>🖍️Покраска - 3000₽🖍️</h2></li>
+            <li class="li_contants"><h2>✂️Стрижка - 2500₽✂️</h2></li>
+            <li class="li_contants"><h2>💅Маникюр - 5000₽💅</h2></li>
+            <li class="li_contants"><h2>🗿Массаж лица - 2000₽🗿</h2></li>
+            <li class="li_contants"><h2>🐴Окрашивание бровей - 1500₽🐴</h2></li>
+        </ul>
+    </div>
+{% endblock content %}

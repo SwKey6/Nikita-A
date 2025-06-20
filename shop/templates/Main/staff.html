@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+{% block title %}Магазин{% endblock title %}
+
+{% block content %}
+    <h1 class="h1-text">Наши специалисты: </h1>
+
+    <section class="sec">
+        <div class="staff">
+            <h1 class="name">Валерий Владимирович</h1>
+            <img src="/media/img/VV.webp" alt="картинка" class="staff_img">
+        </div>
+        <div class="staff2">
+            <h1 class="name">Антон Григорьевич</h1>
+            <img src="/media/img/AG.webp" alt="картинка" class="staff_img">
+        </div>
+        <div class="staff2">
+            <h1 class="name">Николай Антонович</h1>
+            <img src="/media/img/HJ.jpeg" alt="картинка" class="staff_img">
+        </div>
+    </section>
+{% endblock content %}

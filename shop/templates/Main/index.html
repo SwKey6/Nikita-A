@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+{% block title %}Магазин{% endblock title %}
+
+{% block content %}
+    <h1 class="h1-text">💃Салон красоты💃</h1>
+    <p class="p-text">💄Салон красоты в Москве💄</p>
+
+    <section class="plans">
+        <h1 class="h1-text">Тарифы: </h1>
+
+        <h1 class="plan_title">💇‍♀️Покрасить</h1>
+        <p class="plan_p">💬Как на СТО — только по красоте!</p>
+        <div class="section">
+            <div class="plan">
+                <img src="/media/img/draw.jpg" alt="картинка" class="plan_img">
+            </div>
+            <h3>Цена: 3000₽</h1>
+        </div>
+
+        <h1 class="plan_title">✂️Подстричь</h1>
+        <p class="plan_p">💬Лишние детали? Отрежем без сварки.</p>
+        <div class="section">
+            <div class="plan">
+                <img src="/media/img/gazone.jpg" alt="картинка" class="plan_img">
+                <h3>Цена: 2500₽</h1>
+            </div>
+        </div>
+
+        <h1 class="plan_title">💅Маникюр</h1>
+        <p class="plan_p">💬Покраска дисков? Не, ноготочки.</p>
+        <div class="section">
+            <div class="plan">
+                <img src="/media/img/wheels.jpg" alt="картинка" class="plan_img">
+                <h3>Цена: 5000₽</h1>
+            </div>
+        </div>
+
+        <h1 class="plan_title">💆‍♀️Массаж лица</h1>
+        <p class="plan_p">💬Полировка кузова — теперь и для кожи.</p>
+        <div class="section">
+            <div class="plan">
+                <img src="/media/img/carOnWashing.webp" alt="картинка" class="plan_img">
+                <h3>Цена: 2000₽</h1>
+            </div>
+        </div>
+
+        <h1 class="plan_title">👁️Окрашивание бровей</h1>
+        <p class="plan_p">💬Тюнинг оптики. Но не ксенон, а бровки!</p>
+        <div class="section">
+            <div class="plan">
+                <img src="/media/img/faraSlepit.jpg" alt="картинка" class="plan_img">
+                <h3>Цена: 1500₽</h1>
+            </div>
+        </div>
+    </section>
+    <h1 class="h1-text">На карте:</h1>
+   <div class="section" style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/213/moscow/search/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Москва автосервис в Москве</a><a href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Москва</a><iframe src="https://yandex.ru/map-widget/v1/?filter=alternate_vertical%3AWhatWhere&ll=37.548210%2C55.733265&mode=search&rl=37.538254%2C55.733807~0.011920%2C0.003204~0.004902%2C-0.004625~-0.013018%2C-0.004232~-0.003804%2C0.005517&sctx=ZAAAAAgCEAAaKAoSCecb0T3rzkJAEUn1nV%2BU4EtAEhIJQ8pPqn06yj8RGw5LAz%2BqsT8iBgABAgMEBSgKOABAhZIHSAFiJXJlbGV2X3JhbmtpbmdfZm9ybXVsYT1sMl9kYzgwNzU2OV9leHBiLHJlbGV2X3J1YnJpY19yYW5raW5nX2Zvcm11bGE9bDJfZGM4MDc1NjlfZXhwYh9yYW5raW5nX2Zvcm11bGE9bDJfZGM4MDc1NjlfZXhwYiVyZWFycj1zY2hlbWVfTG9jYWwvR2VvL05vTDFJbkFkdmVydD0xYjlyZWFycj1zY2hlbWVfTG9jYWwvR2VvL0FkdmVydHMvRW5hYmxlQnVzaW5lc3NBZHZlcnRPbmx5PTFiNXJlYXJyPXNjaGVtZV9Mb2NhbC9HZW8vRXh0cmFBZHZlcnRPbmx5SGVhdnlUb3BTaXplPTEyYi9yZWFycj1zY2hlbWVfTG9jYWwvR2VvL0N1c3RvbUFkdmVydFBydW5pbmc9OTAwMGIfcmFua2luZ19mb3JtdWxhPWwyX2RjODA3NTY5X2V4cGoCcnWdAc3MzD2gAQCoAQC9Abc%2BiQrCAUbo9qv8tgKT082NBMmD1%2BLOBpPc97IGtbbjuZQGkdTV0efVyMJRt4HsxAXqzOC7f8HIzJwEyJmk4uEB3J%2FShJsGzr%2FqucQBggIh0JzQvtGB0LrQstCwINCw0LLRgtC%2B0YHQtdGA0LLQuNGBigIdMTg0MTA1MjQ2JDE4NDEwNTI2MCQxODQxMDUyNTaSAgMyMTOaAgxkZXNrdG9wLW1hcHOqAsMBMTc0NTk0MzE2MTYsNTUyNjUzOTI3MjEsNjAwMjI0NCwxMTcyNTQ3MjgxLDQ3MTUyNzY2MjQxLDM2OTE4OTg5NDcyLDYwMDIyNDcsMjc0MjExNjAwMCw5ODM0OTI4NDQ2OSw1ODYwNzQyNTEsNTEwNjYzNTM5MSw2NDIzNDUyMjEsMjExMTE0Mjk1MTAzLDIwNzE4MDk4NzYsMTM2NDg4NDU1MjEsNTA0NTc4NzYwOCw2MDAyMjc0LDU0ODYzMTA3MTMwsAIB&sll=37.548210%2C55.733265&sspn=0.004720%2C0.001590&text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81&z=18.67" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+{% endblock content %}

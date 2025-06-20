@@ -1,0 +1,124 @@
+footer{
+    text-align: center;
+    margin-top: 35px;
+    margin-left: 100px;
+    padding: 20px;
+    font-size: 30px;
+    color: black;
+}
+body{
+     background: -webkit-linear-gradient(327deg, #cdc22d,#e18264,#9a6d83); background: linear-gradient(327deg, #cdc22d,#e18264,#9a6d83);
+}
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: #1F1F1F;
+    padding: 20px;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.link:hover {
+    color: #ddd;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.h1-text{
+    text-align: center;
+    margin-top: 35px;
+    padding-top: 15px;
+    font-size: 35px;
+    color: black;
+}
+.p-text{
+    text-align: center;
+    font-size: 20px;
+    color: black;
+}
+.section{
+    margin-left: 710px;
+}
+.plan_img{
+    width: 500px;
+    height: 300px;
+    border-radius: 15px;
+}
+.plan_p{
+    text-align: center;
+    font-size: 20px;
+    color: black;
+}
+.plan_title{
+    text-align: center;
+    font-size: 25px;
+    color: black;
+}
+
+.button{
+    margin-left: 760px;
+    margin-top: 20px;
+    background-color: #1F1F1F;
+    border: none;
+    color: white;
+    padding: 33px 112px;
+    border-radius: 20px;
+}
+
+.a_btn{
+    color: white;
+    text-decoration: none;
+    font-size: 35px;
+    transition: color 0.3s;
+}
+.contacts{
+    margin-left: 100px;
+    margin-top: 20px;
+    font-size: 25px;
+    color: black;
+    text-decoration: none;
+}
+.ul_contacts{
+    list-style: none; 
+}
+.staff{
+    margin-left: 300px;
+    margin-top: 20px;
+}
+.staff2{
+    margin-left: 100px;
+    margin-top: 20px;
+}
+.name{
+    margin-left: 20px;
+    font-size: 25px;
+    color: black;
+}
+.staff_img{
+    width: 450px;
+    height: 275px;
+    border-radius: 15px;
+}
+.sec{
+    display: flex;
+}
