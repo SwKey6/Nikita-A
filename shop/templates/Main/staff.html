@@ -3,25 +3,36 @@
 
 <head>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 {% block title %}Магазин{% endblock title %}
 
 {% block content %}
-    <h1 class="h1-text">Наши специалисты: </h1>
-
-    <section class="sec">
-        <div class="staff">
-            <h1 class="name">Валерий Владимирович</h1>
-            <img src="/media/img/VV.webp" alt="картинка" class="staff_img">
+<div class="gold-container">
+        <div class="gold-header">
+            <h1>Милмар</h1>
+            <p>Наши профессиональные специалисты</p>
         </div>
-        <div class="staff2">
-            <h1 class="name">Антон Григорьевич</h1>
-            <img src="/media/img/AG.webp" alt="картинка" class="staff_img">
+        
+        <div class="masters-grid">
+            {% for employe in employees %}
+            <div class="master-card">
+                <img src="{{ employe.photo.url }}" alt="Фото {{ employe.full_name }}" class="master-photo">
+                <div class="master-info">
+                    <h3 class="master-name">{{ employe.full_name }}</h3>
+                    <p class="master-position">Направление: {{ employe.prof }}</p>
+                    <p class="master-experience">Опыт работы: {{ employe.worked }} лет</p>
+                    <p class="master-services">Умеет: {{ employe.do }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        
+        <a href="{% url 'About' %}" class="gold-button">ЗАПИСАТЬСЯ К МАСТЕРУ</a>
+        
+        <div class="gold-footer">
+            Более 1000 довольных клиентов<br>
+            Удобное расположение у метро
         </div>
-        <div class="staff2">
-            <h1 class="name">Николай Антонович</h1>
-            <img src="/media/img/HJ.jpeg" alt="картинка" class="staff_img">
-        </div>
-    </section>
+    </div>
 {% endblock content %}

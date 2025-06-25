@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="profile-container">
+    <div class="profile-header">
+        <h1>Профиль пользователя</h1>
+        <div class="user-info">
+            {% if user.get_full_name %}
+                <p><strong>ФИО:</strong> {{ user.get_full_name }}</p>
+            {% else %}
+                <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+            {% endif %}
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Дата регистрации:</strong> {{ user.date_joined|date:"d.m.Y" }}</p>
+            <a href="{% url 'logout' %}" class="logout-btn">Выйти</a>
+        </div>
+    </div>
+
+
+    <div class="appointments-section">
+        <h2>Ваши записи</h2>
+        {% if appointments %}
+        <div class="appointments-list">
+            {% for app in appointments %}
+            <div class="appointment-card">
+                <div class="appointment-info">
+                    <h3>{{ app.service }}</h3>
+                    <p><i class="far fa-calendar-alt"></i> {{ app.date_time|date:"d M Y H:i" }}</p>
+                    <p><i class="fas fa-phone"></i> {{ app.phone }}</p>
+                    {% if app.notes %}
+                    <p class="notes">{{ app.notes }}</p>
+                    {% endif %}
+                </div>
+                <form method="post" action="{% url 'cancel_appointment' app.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="cancel-btn">Отменить запись</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="no-appointments">У вас пока нет записей</p>
+        {% endif %}
+    </div>
+
+    {% if user.is_superuser %}
+        <div class="profile-header">
+            <h1>Вы - власть!</h1>
+            <p><strong>Отныне, Вы, великий {{ user.username }}, - администратор нашего сайта! Ваш доступ в <a href="/admin">admin панель</a> уже готов!</strong></p>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    .profile-container {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    
+    .profile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .user-info {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    
+    .logout-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 15px;
+        background: #ff6b6b;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+    
+    .logout-btn:hover {
+        background: #ff5252;
+    }
+    
+    .appointment-card {
+        background: white;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .appointment-info i {
+        margin-right: 8px;
+        color: #6c757d;
+    }
+    
+    .cancel-btn {
+        padding: 8px 15px;
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        color: #dc3545;
+        text-decoration: none;
+    }
+    
+    .no-appointments {
+        text-align: center;
+        color: #6c757d;
+        padding: 20px;
+    }
+</style>
+{% endblock %}

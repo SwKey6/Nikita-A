@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "kingleo.deepseek-web"
+        "kingleo.deepseek-web",
+        "ms-azuretools.vscode-docker"
     ]
 }

@@ -6,19 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUvm" crossorigin="anonymous">
     {% block extra_css %}{% endblock %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
         <header class="header">
         <nav>
             <ul class="list">
-                <li>
+                <li style="margin-top: 70%;">
                     <a class="link" href="{% url "Main" %}">🦩Главная</a>
                 </li>
                 <li>
-                    <a class="link" href="{% url "About" %}">🦍Об компании</a>
+                    <a class="link" href="{% url "About" %}">🦍Наши услуги</a>
                 </li>
                 <li>
                     <a class="link" href="{% url "Contacts" %}">🐿️Контакты</a>
@@ -30,21 +28,1172 @@
                     <a class="link" href="{% url "Services" %}">💍Цены</a>
                 </li>
                 <li>
-                    <a class="link" href="{% url "Portfolio" %}">👓Оставить отзыв</a>
+                    <a class="link" href="{% url "reviews" %}">👓Оставить отзыв</a>
                 </li>
                 <li>
-                    <a class="link" target="_blank" href="https://www.youtube.com/watch?v=j-iheFkstFQ">📵8 985 843-29-27📵</a>
+                    <a class="link" target="_blank" href="https://t.me/LofiScam">📵Телеграм📵</a>
                 </li>
+
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="link" href="{% url "profile" %}">Профиль</a>
+                </li>
+                {% else %}
+                <li>
+                    <a class="link" href="{% url "login" %}">Войти</a>
+                </li>
+                {% endif %}
             </ul>
         </nav>
     </header>
 
     {% block content %}
     
+    {% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
     {% endblock content %}
 
     <footer>
         <p>&copy; 2025 Телышев Никита Александрович 🍏Все права защищенны🍎</p>
     </footer>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Создаем кнопку меню
+  const menuBtn = document.createElement('button');
+  menuBtn.className = 'menu-toggle';
+  menuBtn.innerHTML = '☰';
+  document.body.prepend(menuBtn);
+
+  const header = document.querySelector('.header');
+
+  // Клик по кнопке
+  menuBtn.addEventListener('click', function() {
+    header.classList.toggle('active');
+    menuBtn.style.display = 'none'; // Просто скрываем кнопку
+  });
+
+  // Клик по ссылке в меню
+  document.querySelectorAll('.link').forEach(link => {
+    link.addEventListener('click', () => {
+      header.classList.remove('active');
+      menuBtn.style.display = 'block'; // Показываем кнопку снова
+    });
+  });
+});
+</script>
+
+    <style>
+    :root {
+        --header-width: min(250px, 20vw);
+        --header-width-laptop: min(180px, 15vw);
+        --text-color: black;
+        --white: white;
+        --transition: all 0.3s ease;
+    }
+
+
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+
+    body {
+    font-family: Arial, sans-serif;
+    background: -webkit-linear-gradient(180deg, #ffffff,#b18cfe);
+    min-height: 100vh;
+    transition: var(--transition);
+    padding-left: var(--header-width);
+    }
+
+    .header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--header-width);
+    height: 100vh;
+    background: #1f1f1f79;
+    z-index: 1000;
+    transition: transform 0.3s;
+    }
+
+    .list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    }
+
+    .link {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
+    }
+
+    .link:hover {
+    color: #ddd;
+    transform: translateX(5px);
+    font-size: 120%;
+    }
+
+    .cancel-btn {
+    /* Базовые стили */
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* Цвета */
+    background: linear-gradient(135deg, #ff4d4d 0%, #ff1a1a 100%);
+    color: white;
+    
+    /* Эффекты при наведении */
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(255, 26, 26, 0.3);
+        background: linear-gradient(135deg, #ff1a1a 0%, #e60000 100%);
+    }
+    
+    /* Анимация нажатия */
+    &:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Неоновое свечение (опционально) */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    
+    &:hover::after {
+        opacity: 1;
+    }
+}
+
+.premium-btn {
+    margin-left: 25.5%;
+    padding: 50px 340px;
+    border-radius: 10px; 
+    margin-top: 10px;
+    background: linear-gradient(135deg, #2b2b2b 0%, #1a1a1a 100%);
+    border: 1px solid #444;
+    &:hover {
+        background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  background: #1F1F1F;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+    .menu-toggle.hidden {
+        opacity: 0;
+        transform: scale(0.8);
+        pointer-events: none;
+    }
+
+
+    /* Контент */
+    .main-content {
+    padding: 20px;
+    transition: var(--transition);
+    }
+
+    .plan_img{
+        border-radius: 20px;
+    }
+
+    img {
+        max-width: 50%;
+        height: auto;
+        margin-left: 25%;
+        margin-right: auto;
+    }
+
+    .h1-text{
+        text-align: center;
+        padding-top: 10px;
+    }
+    .p-text{
+        text-align: center;
+        padding-top: 10px;
+    }
+    .plan_title{
+        text-align: center;
+        padding-top: 10px;
+    }
+    .plan_p{
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    .plan_price{
+        margin-left: 25%;
+        font-size: 32px;
+        padding: 10px;
+    }
+    .connect_btn{
+        margin-left: 25.5%;
+        padding: 50px 340px;
+        border-radius: 10px; 
+        margin-top: 10px;
+    }
+    .connect_a{
+        font-style: 52px;
+        color: white;
+        text-decoration: none
+    }
+    .ul_contacts{
+        margin-left: 31%;
+        margin-top: 30px;
+        list-style-type: none
+    }
+    .contacts{
+        text-decoration: none;
+    }
+    .h2-text{
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .mini-map{
+        margin-left: 27%;
+    }
+    .staff_img{
+        border-radius: 20px;
+    }
+    .div_in_div{
+        background-color: rgb(208, 160, 230);
+    }
+    .div_in_div:hover img {
+    filter: brightness(0.8);
+    transition: 0.5s;
+    }
+
+    .button{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+    .p-text{
+        display: block;
+        margin-right: auto;
+    }
+
+/* Основные стили */
+.milmar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+}
+
+/* Заголовок */
+.milmar-title {
+    font-size: 2.8rem;
+    color: #d4af37;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Текст описания */
+.milmar-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin: 15px 0;
+    position: relative;
+    padding-left: 35px;
+    color: #555;
+}
+
+.milmar-text:before {
+    content: "•";
+    color: #d4af37;
+    font-size: 2rem;
+    position: absolute;
+    left: 0;
+    top: -5px;
+}
+
+/* Кнопка записи */
+.milmar-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #d4af37, #f1c40f);
+    color: white;
+    padding: 18px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+    transition: all 0.4s ease;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.milmar-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+    background: linear-gradient(135deg, #f1c40f, #d4af37);
+}
+
+/* Секция с картой */
+.milmar-map-section {
+    margin-top: 80px;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.milmar-subtitle {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #d4af37;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.milmar-subtitle:after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: #d4af37;
+    margin: 15px auto 0;
+}
+
+/* Контейнер карты */
+.map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    border: 1px solid #eee;
+}
+
+/* Особенности */
+.map-features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.feature-item {
+    background: white;
+    padding: 18px 30px;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.feature-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.feature-icon {
+    color: #d4af37;
+    font-weight: bold;
+    font-size: 1.4rem;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}   
+
+    .milmar-service-card {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+/* Основные стили карточки */
+.service-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Шапка с логотипом */
+.service-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.plan_title {
+    font-size: 1.8rem;
+    color: #d4af37;
+    margin: 0;
+    font-weight: 700;
+}
+
+.plan_p {
+    font-size: 1.1rem;
+    color: #777;
+    margin: 5px 0 0;
+}
+
+/* Изображение услуги */
+.div_in_div {
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plan_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.div_in_div:hover .plan_img {
+    transform: scale(1.05);
+}
+
+/* Контент услуги */
+.service-content {
+    margin: 25px 0;
+}
+
+.service-name {
+    font-size: 1.5rem;
+    color: #222;
+    margin: 10px 0;
+}
+
+/* Секция с ценой */
+.price-section {
+    background: #f9f9f9;
+    padding: 12px;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 15px 0;
+}
+
+.plan_price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #55534b;
+}
+
+/* Кнопка записи */
+.premium-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #d4af37, #f1c40f);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+    margin-left: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.premium-btn:active {
+    transform: translateY(1px);
+}
+
+.connect_a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.contacts-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+}
+
+.contacts-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contacts-title {
+    font-size: 2.2rem;
+    color: #d4af37;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.contacts-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #d4af37;
+}
+
+.divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ddd, transparent);
+    margin: 20px 0;
+}
+
+.contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 40px 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    color: #d4af37;
+    margin-right: 15px;
+    width: 30px;
+    text-align: center;
+}
+
+.contact-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.contact-link:hover {
+    color: #d4af37;
+}
+
+.copyright {
+    font-size: 1rem;
+    color: #777;
+    margin: 10px 0;
+}
+
+.rights {
+    font-size: 0.9rem;
+    color: #999;
+}
+        .gold-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff9e6;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            flex: 1;
+        }
+        
+        .gold-header {
+            text-align: center;
+            color: #8a6d3b;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .masters-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .master-card {
+            background: white;
+            border: 1px solid #d4af37;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .master-name {
+            font-weight: bold;
+            color: #5a4a2a;
+            font-size: 1.3em;
+            margin: 0 0 10px;
+        }
+        
+        .master-specialty {
+            color: #d4af37;
+            font-style: italic;
+            margin: 0 0 10px;
+        }
+        
+        .master-experience {
+            margin: 10px 0;
+        }
+        
+        .master-skills {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 15px;
+        }
+        
+        .gold-button {
+            display: block;
+            width: 250px;
+            margin: 40px auto;
+            padding: 12px;
+            background-color: #d4af37;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1.1em;
+        }
+        
+        .gold-button:hover {
+            background-color: #b59530;
+        }
+        
+        .price-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff9e6;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .price-header {
+            text-align: center;
+            color: #8a6d3b;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .price-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        .price-list th {
+            background-color: #d4af37;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .price-list td {
+            padding: 12px;
+            border-bottom: 1px solid #d4af37;
+        }
+        
+        .price-list tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .price-list tr:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        
+        .service-name {
+            font-weight: bold;
+            color: #5a4a2a;
+        }
+        
+        .service-price {
+            color: #d4af37;
+            font-weight: bold;
+            text-align: right;
+            white-space: nowrap;
+        }
+        
+        .price-button {
+            display: block;
+            width: 250px;
+            margin: 40px auto;
+            padding: 12px;
+            background-color: #d4af37;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1.1em;
+        }
+        
+        .price-button:hover {
+            background-color: #b59530;
+        }
+        
+        .price-footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #8a6d3b;
+            border-top: 1px solid #d4af37;
+        }
+        
+        .copyright {
+            font-size: 0.9em;
+            margin-top: 20px;
+            color: #8a6d3b;
+        }
+
+/* Основные стили */
+.gold-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Форма отзыва */
+.review-form {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    border: 2px solid #d4af37;
+    margin-bottom: 30px;
+}
+
+.gold-textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    min-height: 120px;
+    margin-bottom: 20px;
+    font-family: 'Times New Roman', serif;
+}
+
+/* Система звезд */
+.star-rating {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 24px;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating input:checked + label,
+.star-rating input:hover + label,
+.star-rating label:hover {
+    color: #d4af37;
+}
+
+/* Карточки отзывов */
+.review-card {
+    background: white;
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rating-display {
+    color: #d4af37;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.review-footer {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.review-date {
+    color: #8a6d3b;
+    font-size: 0.9em;
+}
+
+/* Кнопка */
+.gold-button {
+    background-color: #d4af37;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    display: block;
+    margin: 20px auto 0;
+}
+
+.gold-button:hover {
+    background-color: #b59530;
+}
+.messages {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    color: white;
+    animation: fadeIn 0.3s, fadeOut 0.5s 2.5s;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+}
+
+.alert-error {
+    background-color: #f44336;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+/* Иконки Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+
+    /* Адаптация под ноутбуки */
+    @media (max-width: 1024px) {
+        :root {
+            --font-base: clamp(0.9rem, 1.5vw, 1rem); /* Адаптивный базовый размер */
+        }
+        
+        body {
+            padding-left: var(--header-width-laptop);
+            font-size: var(--font-base);
+        }
+        
+        .header {
+            width: var(--header-width-laptop);
+            padding: 12px;
+        }
+        
+        .link {
+            font-size: clamp(0.8rem, 1.3vw, 0.9rem);
+            gap: 8px;
+        }
+        }
+
+    @media (max-width: 768px) {
+
+    body {
+        padding-left: 0;
+    }
+    .contacts-container {
+        padding: 20px;
+    }
+    
+    .contacts-title {
+        font-size: 1.8rem;
+    }
+    
+    .contacts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .connect_btn{
+        margin-left: 40%;
+        padding: 12px 15px;
+    }
+
+    .menu-toggle {
+    display: block;
+    }
+    
+    .header {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+    }
+    
+    .header.active {
+        transform: translateX(0);
+    }
+
+        .header.active + .menu-toggle {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+    .menu-toggle {
+        display: block !important;
+    }
+    
+    .header.active + .menu-toggle {
+        display: none !important;
+    }
+    .mini-map{
+        margin-left: 12%;
+    }
+
+    .milmar-service-card {
+        padding: 20px 15px;
+        margin: 15px;
+    }
+    
+    .service-brand {
+        font-size: 1.8rem;
+    }
+    
+    .service-name {
+        font-size: 1.5rem;
+    }
+    
+    .service-description {
+        font-size: 1rem;
+        margin: 15px 0;
+    }
+    
+    .price-section {
+        padding: 10px;
+    }
+    
+    .price-value {
+        font-size: 1.2rem;
+    }
+    
+    .service-button {
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+    
+        .service-section {
+        padding: 20px;
+        max-width: 100%;
+    }
+    
+    .plan_title {
+        font-size: 1.6rem;
+    }
+    
+    .div_in_div {
+        height: 180px;
+    }
+}
+
+
+    @media (max-width: 480px) {
+    :root {
+        --font-base: clamp(0.7rem, 3vw, 0.8rem);
+    }
+    .header {
+        width: min(260px, 85vw);
+        padding: 8px;
+    }
+    
+    .link {
+        font-size: clamp(0.65rem, 3.5vw, 0.75rem);
+        gap: 6px;
+    }
+    
+    .menu-toggle {
+        font-size: clamp(18px, 6vw, 22px);
+        padding: 8px 12px;
+    }
+    
+    footer p {
+        font-size: clamp(0.6rem, 3vw, 0.7rem);
+        padding: 0 10px;
+    }
+
+    .milmar-service-card {
+        border-radius: 10px;
+    }
+    
+    .service-brand {
+        font-size: 1.6rem;
+    }
+    
+    .service-title {
+        font-size: 1.3rem;
+    }
+    
+    .service-name {
+        font-size: 1.4rem;
+    }
+    
+    .price-label {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+
+    .service-section {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    
+    .plan_title {
+        font-size: 1.4rem;
+    }
+    
+    .plan_p {
+        font-size: 1rem;
+    }
+    
+    .premium-btn {
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+    }
+
+    @media (max-width: 360px) {
+        :root {
+            --font-base: clamp(0.6rem, 3.5vw, 0.7rem);
+        }
+        
+        .link {
+            font-size: clamp(0.55rem, 4vw, 0.65rem);
+        }
+        
+        .menu-toggle {
+            top: 10px;
+            left: 10px;
+        }
+    }
+
+
+    /* Футер */
+    footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    }
+    </style>
 </body>
 </html>

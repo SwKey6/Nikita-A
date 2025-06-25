@@ -3,19 +3,37 @@
 
 <head>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 {% block title %}Магазин{% endblock title %}
 
 {% block content %}
-    <h1 class="h1-text">🚭Мы:</h1>
-    <p class="p-text">🥇- лучший салон красоты в Москве, да и в мире! Мы имеем более чем 1000 отзывов от разных клиентов.</p>
-    <p class="p-text">🍩- находимся около центра города, удобно добраться!</p>
-    <p class="p-text">🏆- цены - низкие!</p>
-    <p class="p-text">♻️- вас ждем в нашем салоне красоты!</p>
+    <h1 class="h1-text">💃Милмар💃</h1>
+    <h4 class="h1-text">Предлагает Вам</h4>
 
-    <button class="button"><a class="a_btn" href="https://promo.tanki.su/about_game/?pub_id=yandex_search_nb_Ong_acq_kw_text3_skachat_online&xid_source=yandex&xid_medium=cpc&xid_campaign_id=119545992&xid_keyword=танки+онлайн+скачать+бесплатно&xid_position_type=premium&xid_position=1&xid_addphrases=no&xid_placement=none&xid_network=search&xid_region=Мытищи&xid_campaign_type=type1&xid_ad_id=16953171905&xid_phrase_id=54646841420&xid_retargeting_id=54646841420&xid_adgroup_id=5565153396&xid_device_type=desktop&xid_creative_id=0&xid_coef_goal_display_id=%7Bcoef_goal_display_id%7D&utm_term=танки+онлайн+скачать+бесплатно&yclid=11616403508107411455&sid=SIDQzUFWeUfik-UrkU8pN7KQ4wBhjVq1QIoR6M9nVPr_nGPH_qmYXHL-zt5If4XIP3WnkDftlwBnkrJ1ZfJ3wFF_cDSDn62cwhu0C-PbAbxj47vIZsKxmItYuZki0ROdOk4BjPWtHxPpm9v&enctid=darevb49jp97&lpsn=MT-About+Game+(USP)-MT2DART-22810&foris=1&teclient=1750427802210495416&utm_source=nonbrand_search&utm_medium=paid-search&utm_campaign=9ipchy2p&utm_content=yandex_search_nb_ong_acq_kw_text3_skachat_online">Записаться</a></button>
+    <section class="plans">
+        <h2 class="h1-text">Наши услуги: </h2>
 
-        <h1 class="h1-text">На карте:</h1>
-   <div class="section" style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/213/moscow/search/%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Москва автосервис в Москве</a><a href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Москва</a><iframe src="https://yandex.ru/map-widget/v1/?filter=alternate_vertical%3AWhatWhere&ll=37.548210%2C55.733265&mode=search&rl=37.538254%2C55.733807~0.011920%2C0.003204~0.004902%2C-0.004625~-0.013018%2C-0.004232~-0.003804%2C0.005517&sctx=ZAAAAAgCEAAaKAoSCecb0T3rzkJAEUn1nV%2BU4EtAEhIJQ8pPqn06yj8RGw5LAz%2BqsT8iBgABAgMEBSgKOABAhZIHSAFiJXJlbGV2X3JhbmtpbmdfZm9ybXVsYT1sMl9kYzgwNzU2OV9leHBiLHJlbGV2X3J1YnJpY19yYW5raW5nX2Zvcm11bGE9bDJfZGM4MDc1NjlfZXhwYh9yYW5raW5nX2Zvcm11bGE9bDJfZGM4MDc1NjlfZXhwYiVyZWFycj1zY2hlbWVfTG9jYWwvR2VvL05vTDFJbkFkdmVydD0xYjlyZWFycj1zY2hlbWVfTG9jYWwvR2VvL0FkdmVydHMvRW5hYmxlQnVzaW5lc3NBZHZlcnRPbmx5PTFiNXJlYXJyPXNjaGVtZV9Mb2NhbC9HZW8vRXh0cmFBZHZlcnRPbmx5SGVhdnlUb3BTaXplPTEyYi9yZWFycj1zY2hlbWVfTG9jYWwvR2VvL0N1c3RvbUFkdmVydFBydW5pbmc9OTAwMGIfcmFua2luZ19mb3JtdWxhPWwyX2RjODA3NTY5X2V4cGoCcnWdAc3MzD2gAQCoAQC9Abc%2BiQrCAUbo9qv8tgKT082NBMmD1%2BLOBpPc97IGtbbjuZQGkdTV0efVyMJRt4HsxAXqzOC7f8HIzJwEyJmk4uEB3J%2FShJsGzr%2FqucQBggIh0JzQvtGB0LrQstCwINCw0LLRgtC%2B0YHQtdGA0LLQuNGBigIdMTg0MTA1MjQ2JDE4NDEwNTI2MCQxODQxMDUyNTaSAgMyMTOaAgxkZXNrdG9wLW1hcHOqAsMBMTc0NTk0MzE2MTYsNTUyNjUzOTI3MjEsNjAwMjI0NCwxMTcyNTQ3MjgxLDQ3MTUyNzY2MjQxLDM2OTE4OTg5NDcyLDYwMDIyNDcsMjc0MjExNjAwMCw5ODM0OTI4NDQ2OSw1ODYwNzQyNTEsNTEwNjYzNTM5MSw2NDIzNDUyMjEsMjExMTE0Mjk1MTAzLDIwNzE4MDk4NzYsMTM2NDg4NDU1MjEsNTA0NTc4NzYwOCw2MDAyMjc0LDU0ODYzMTA3MTMwsAIB&sll=37.548210%2C55.733265&sspn=0.004720%2C0.001590&text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81&z=18.67" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+        {% for service in services %}
+        <div class="service-section">
+            <h3 class="plan_title">{{ service.title }}</h3>
+            <p class="plan_p">{{ service.description }}</p>
+            <div class="section">
+                <div class="div_in_div">
+                    <div class="plan">
+                    {% if service.image %}
+                    <img src="{{ service.image.url }}" alt="{{ service.title }}" class="plan_img">
+                    {% endif %}
+                    </div>
+                    <h3 class="plan_price">Цена: {{ service.price }}₽</h3>
+                </div>
+                <button class="premium-btn">
+                    <a href="{% url 'Connect' service.id %}" class="connect_a"><h1 class="connect_a">Записаться</h1></a>
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+
+    </section>
 {% endblock content %}

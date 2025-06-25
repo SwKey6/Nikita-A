@@ -2,12 +2,88 @@
 {% load static %}
 
 <head>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 {% block title %}Магазин{% endblock title %}
 
 {% block content %}
-    <h1 style="text-align: center;">Отзыв о нас!</h1>
-    <iframe style="margin-left: 780px;" src="https://docs.google.com/forms/d/e/1FAIpQLSfTUxNEo9S6YFfTvVx76Gr2bWZ9rLHa2LqWML631-sBePDaCg/viewform?embedded=true" width="420" height="840" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
-{% endblock content %}
+<div class="gold-container">
+    <div class="gold-header">   
+        <h1>Отзывы о нашем салоне</h1>
+        <p>Ваше мнение очень важно для нас</p>
+    </div>
+    <!-- Форма отзыва -->
+    <div class="review-form">
+        <h2>Оставить отзыв</h2>
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label><strong>Ваш отзыв</strong></label>
+                <textarea 
+                    name="text" 
+                    class="gold-textarea" 
+                    placeholder="Напишите ваш отзыв здесь..."
+                    required
+                >{% if request.POST.text %}{{ request.POST.text }}{% endif %}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label><strong>Ваша оценка</strong></label>
+                <div class="star-rating">
+                    {% for i in "12345" %}
+                    <input 
+                        type="radio" 
+                        id="star{{i}}" 
+                        name="rating" 
+                        value="{{i}}"
+                        {% if request.POST.rating == i or forloop.last %}checked{% endif %}
+                    >
+                    <label for="star{{i}}">{{i}}★</label>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <button type="submit" class="gold-button">Отправить отзыв</button>
+        </form>
+    </div>
+
+    <!-- Список отзывов -->
+    <div class="reviews-list">
+        <h2>Отзывы наших клиентов</h2>
+        
+        {% if reviews %}
+            {% for review in reviews %}
+            <div class="review-card">
+                <div class="review-header">
+                    <h3>{{ review.user.username|default:"Аноним" }}</h3>
+                    <div class="rating-display">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <p class="review-text">{{ review.text }}</p>
+                <div class="review-footer">
+                    <span class="review-date">{{ review.created_at|date:"d.m.Y H:i" }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-reviews">Пока нет отзывов. Будьте первым!</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Вывод сообщений -->
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

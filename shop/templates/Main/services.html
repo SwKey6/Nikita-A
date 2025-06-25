@@ -3,19 +3,40 @@
 
 <head>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 {% block title %}Магазин{% endblock title %}
 
 {% block content %}
-    <div class="section">
-        <ul class="ul_contacts">
-            <li class="li_contants"><h1>☢️Цены на наши услуги: ☢️</h1></li>
-            <li class="li_contants"><h2>🖍️Покраска - 3000₽🖍️</h2></li>
-            <li class="li_contants"><h2>✂️Стрижка - 2500₽✂️</h2></li>
-            <li class="li_contants"><h2>💅Маникюр - 5000₽💅</h2></li>
-            <li class="li_contants"><h2>🗿Массаж лица - 2000₽🗿</h2></li>
-            <li class="li_contants"><h2>🐴Окрашивание бровей - 1500₽🐴</h2></li>
-        </ul>
+    <div class="price-container">
+        <div class="price-header">
+            <h1>Милмар - Цены на услуги</h1>
+            <p>Качество, проверенное временем</p>
+        </div>
+        
+        <table class="price-list">
+            <thead>
+                <tr>
+                    <th>Услуга</th>
+                    <th style="text-align: right;">Цена</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for service in services %}
+                <tr>
+                    <td class="service-name">{{ service.title }}</td>
+                    <td class="service-price">{{ service.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <a href="{% url 'About' %}" class="price-button">ЗАПИСАТЬСЯ ОНЛАЙН</a>
+        
+        <div class="price-footer">
+            <p>Более 1000 довольных клиентов</p>
+            <p>Удобное расположение у метро</p>
+        </div>
     </div>
 {% endblock content %}
