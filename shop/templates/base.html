@@ -13,25 +13,25 @@
         <nav>
             <ul class="list">
                 <li style="margin-top: 70%;">
-                    <a class="link" href="{% url "Main" %}">🦩Главная</a>
+                    <a class="link" href="{% url "Main" %}"> Главная</a>
                 </li>
                 <li>
-                    <a class="link" href="{% url "About" %}">🦍Наши услуги</a>
+                    <a class="link" href="{% url "About" %}"> Наши услуги</a>
                 </li>
                 <li>
-                    <a class="link" href="{% url "Contacts" %}">🐿️Контакты</a>
+                    <a class="link" href="{% url "Contacts" %}"> Контакты</a>
                 </li>
                 <li>
-                    <a class="link" href="{% url "Staff" %}">👶Наши специалисты</a>
+                    <a class="link" href="{% url "Staff" %}"> Наши специалисты</a>
                 </li>
                 <li>
-                    <a class="link" href="{% url "Services" %}">💍Цены</a>
+                    <a class="link" href="{% url "Services" %}"> Цены</a>
                 </li>
                 <li>
-                    <a class="link" href="{% url "reviews" %}">👓Оставить отзыв</a>
+                    <a class="link" href="{% url "reviews" %}"> Оставить отзыв</a>
                 </li>
                 <li>
-                    <a class="link" target="_blank" href="https://t.me/LofiScam">📵Телеграм📵</a>
+                    <a class="link" target="_blank" href="https://t.me/LofiScam"> Телеграм </a>
                 </li>
 
                 {% if user.is_authenticated %}
@@ -984,6 +984,11 @@ document.addEventListener('DOMContentLoaded', function() {
     from {opacity: 1;}
     to {opacity: 0;}
 }
+
+.booking-container{
+    max-width: 700px
+}
+
 /* Иконки Font Awesome */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
@@ -1022,6 +1027,10 @@ document.addEventListener('DOMContentLoaded', function() {
     .contacts-title {
         font-size: 1.8rem;
     }
+
+    .booking-container{
+        width: 24rem;
+    }
     
     .contacts-grid {
         grid-template-columns: 1fr;
@@ -1030,6 +1039,10 @@ document.addEventListener('DOMContentLoaded', function() {
     .connect_btn{
         margin-left: 40%;
         padding: 12px 15px;
+    }
+
+    .milmar-title{
+        font-size: 2rem;
     }
 
     .menu-toggle {
