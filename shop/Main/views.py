@@ -123,7 +123,7 @@ def cancel_appointment(request, appointment_id):
     
     return redirect('profile')
 
-@login_required
+# @login_required
 def reviews(request):
     if request.method == 'POST':
         try:
